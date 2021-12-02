@@ -15,7 +15,7 @@ import { isLoggedIn } from '../middlewares/userMiddleware';
 const router = express.Router();
 
 /*   /api/v1/getSingleProduct/:id   */
-router.route('/getSingleProduct/:id').get(isLoggedIn, getSingleProduct);
+router.route('/getSingleProduct/:id').get(getSingleProduct);
 
 /*   /api/v1/getAllProducts   */
 router.route('/getAllProducts').get(isLoggedIn, getAllProduct);

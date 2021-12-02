@@ -48,26 +48,21 @@ export const getAllProduct = async (
 ) => {
   try {
     const qNew = req.query.new;
+    console.log(qNew);
+
     const qCategory = req.query.category;
+    console.log(qCategory);
+
     let products;
     if (qNew) {
       products = await Product.find().sort({ createdAt: -1 }).limit(1);
-    }
-    if (qCategory) {
+    } else if (qCategory) {
+      console.log(5);
       products = await Product.find({
         categories: {
           $in: [qCategory],
         },
       });
-    }
-    if (qCategory && qNew) {
-      products = await Product.find({
-        categories: {
-          $in: [qCategory],
-        },
-      })
-        .sort({ createdAt: -1 })
-        .limit(1);
     } else {
       products = await Product.find();
     }
@@ -101,6 +96,7 @@ export const addProduct = async (
         message: 'Admin Only',
       });
     }
+    console.log(req);
     //if we do not receive files
     if (!req.files) {
       res.status(401).json({
@@ -109,7 +105,8 @@ export const addProduct = async (
       });
     }
 
-    const { img } = req.files;
+    const { img } = req.files!;
+    console.log(img);
 
     const result = await cloudinary.uploader.upload(img.tempFilePath, {
       folder: 'Portfolio_Projects_Products',

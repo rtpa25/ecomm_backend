@@ -6,6 +6,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import fileupload from 'express-fileupload';
 import cloudinary from 'cloudinary';
+import cors from 'cors';
 
 //Internal Updates
 import connect from './config/db';
@@ -16,6 +17,7 @@ import user from './routes/user.route';
 import product from './routes/product.route';
 import order from './routes/order.route';
 import cart from './routes/cart.route';
+import stripe from './routes/stripe.route';
 
 const app = express();
 
@@ -30,6 +32,13 @@ app.use(
 
 //regular middleware
 app.use(express.json());
+app.use(
+  cors({
+    origin: ['http://localhost:3000'],
+    credentials: true,
+  })
+);
+
 app.use(express.urlencoded({ extended: true }));
 
 //router middleware
@@ -37,6 +46,7 @@ app.use('/api/v1', user);
 app.use('/api/v1', product);
 app.use('/api/v1', order);
 app.use('/api/v1', cart);
+app.use('/api/v1', stripe);
 
 //cloudinary config
 cloudinary.config({

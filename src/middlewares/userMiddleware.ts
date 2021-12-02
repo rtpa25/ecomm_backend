@@ -10,6 +10,8 @@ export const isLoggedIn = async (
   res: Response,
   next: NextFunction
 ) => {
+  console.log(req.cookies);
+
   try {
     // check token first in cookies
     let token: string = req.cookies.token;

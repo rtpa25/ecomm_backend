@@ -19,21 +19,18 @@ const CartSchema = new Schema(
       ref: 'User',
       required: true,
     },
-    cartItems: [
-      {
-        product: {
-          type: mongoose.Types.ObjectId,
-          ref: 'Product',
-          required: true,
-        },
-        quantity: {
-          type: Number,
-          required: true,
-          default: 1,
-          minlength: 0,
-        },
-      },
-    ],
+
+    product: {
+      type: mongoose.Types.ObjectId,
+      ref: 'Product',
+      required: true,
+    },
+    quantity: {
+      type: Number,
+      required: true,
+      default: 1,
+      minlength: 0,
+    },
   },
   { timestamps: true }
 );

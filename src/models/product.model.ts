@@ -11,10 +11,10 @@ export interface ProductDocument extends mongoose.Document {
   desc: string;
   createdAt: Date;
   updatedAt: Date;
-  img: { secure_url: String; id: string };
-  categories: [];
-  size: string;
-  color: string;
+  img: { secure_url: string; id: string };
+  categories: string[];
+  size: string[];
+  color: string[];
   price: number;
 }
 
@@ -40,8 +40,8 @@ const ProductSchema = new Schema(
       id: { type: String, required: true },
     },
     categories: { type: Array },
-    size: { type: String },
-    color: { type: String },
+    size: { type: Array },
+    color: { type: Array },
     price: { type: Number, required: true },
   },
   { timestamps: true }

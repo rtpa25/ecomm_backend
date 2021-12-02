@@ -46,7 +46,7 @@ export const updateCart = async (
       },
       { new: true }
     );
-
+    console.log(updatedCart);
     res.status(200).json({
       success: true,
       updatedCart,
@@ -93,7 +93,7 @@ export const getSelfCart = async (
   next: NextFunction
 ) => {
   try {
-    const cart = await Cart.find({ user: req.user._id });
+    const cart = await Cart.find({ user: req.user._id }).populate('product');
 
     res.status(200).json({
       success: true,
