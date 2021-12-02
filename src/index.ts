@@ -56,7 +56,7 @@ cloudinary.v2.config({
   secure: true,
 });
 
-app.listen(process.env.PORT, async () => {
+app.listen(process.env.PORT || 5000, async () => {
   logger.info(`listening to port ${process.env.PORT}`);
   await connect();
 });
