@@ -12,9 +12,11 @@ import { isLoggedIn } from '../middlewares/userMiddleware';
 const router = express.Router();
 
 /*   /api/v1/sendStripeKey   */
-router.route('/sendStripeKey').post(isLoggedIn, sendStripeKey);
+router.route('/sendStripeKey').post(isLoggedIn as any, sendStripeKey as any);
 
 /*   /api/v1/captureStripePayment   */
-router.route('/captureStripePayment').post(captureStripePayment);
+router
+  .route('/captureStripePayment')
+  .post(isLoggedIn as any, captureStripePayment as any);
 
 export default router;

@@ -11,6 +11,10 @@ import { CustomReq } from '../utils/UserCustomReqObject';
 
 const cloudinary = Cloudinary.v2;
 
+interface categories {
+  $in: string[];
+}
+
 //-----GET_SINGLE_PRODUCT CONTROLLER ----//
 export const getSingleProduct = async (
   req: CustomReq,
@@ -60,7 +64,7 @@ export const getAllProduct = async (
       console.log(5);
       products = await Product.find({
         categories: {
-          $in: [qCategory],
+          $in: qCategory as string[],
         },
       });
     } else {
@@ -96,19 +100,16 @@ export const addProduct = async (
         message: 'Admin Only',
       });
     }
-    console.log(req);
+
     //if we do not receive files
-    if (!req.files) {
+    if (!req.body.img) {
       res.status(401).json({
         success: false,
         message: 'Image is required to be uploaded',
       });
     }
 
-    const { img } = req.files!;
-    console.log(img);
-
-    const result = await cloudinary.uploader.upload(img.tempFilePath, {
+    const result = await cloudinary.uploader.upload(req.body.img, {
       folder: 'Portfolio_Projects_Products',
     });
 
@@ -160,9 +161,7 @@ export const updateProduct = async (
     if (req.files) {
       await cloudinary.uploader.destroy(product!.img.id);
 
-      const { img } = req.files;
-
-      const result = await cloudinary.uploader.upload(img.tempFilePath, {
+      const result = await cloudinary.uploader.upload(req.body.img, {
         folder: 'Portfolio_Projects_Products',
       });
 
