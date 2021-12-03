@@ -48,6 +48,8 @@ app.use('/api/v1', order);
 app.use('/api/v1', cart);
 app.use('/api/v1', stripe);
 
+app.set('trust proxy', 1);
+
 //cloudinary config
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_NAME,
