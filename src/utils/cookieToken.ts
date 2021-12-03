@@ -10,9 +10,7 @@ export const cookieToken = (user: UserDocument, res: Response) => {
     .status(200)
     .cookie('token', token, {
       expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
-      secure: true,
-      httpOnly: false,
-      sameSite: 'none',
+      httpOnly: true,
     })
     .json({
       success: true,
