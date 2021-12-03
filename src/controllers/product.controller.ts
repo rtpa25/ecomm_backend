@@ -56,6 +56,7 @@ export const getAllProduct = async (
 
     const qCategory = req.query.category;
     console.log(qCategory);
+    console.log(1);
 
     let products;
     if (qNew) {

@@ -16,8 +16,6 @@ export const isLoggedIn = async (
     // check token first in cookies
     let token: string = req.cookies.token;
 
-    console.log(req);
-
     // if token not found in cookies, check if header contains Auth field
     if (!token && req.header('Authorization')) {
       token = req.header('Authorization')!.replace('Bearer ', '');
@@ -32,7 +30,6 @@ export const isLoggedIn = async (
     }
     //retuns the decoded token through which we can accesss the constituents of the token
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET as string);
-    console.log(`decoded: ${decoded}`);
 
     //id can be extracted from decoded because token is made with _id
     req.user = (await User.findById(decoded.id)) as UserDocument;

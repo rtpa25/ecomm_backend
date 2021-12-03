@@ -36,7 +36,7 @@ app.use(
   cors({
     origin: 'http://localhost:3000',
     credentials: true,
-    allowedHeaders: ['Access-Control-Allow-Origin', '*'],
+    // allowedHeaders: ['Access-Control-Allow-Origin', '*'],
   })
 );
 
@@ -61,5 +61,6 @@ cloudinary.v2.config({
 
 app.listen(process.env.PORT || 5000, async () => {
   logger.info(`listening to port ${process.env.PORT}`);
+  logger.info('THIS IS A TEST DLKFJSJSDFKLDSFDKLFJSKFJSDFJSDLKFJ');
   await connect();
 });
