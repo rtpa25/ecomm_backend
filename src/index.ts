@@ -36,6 +36,7 @@ app.use(
   cors({
     origin: 'https://ecomm-app-theta.vercel.app',
     credentials: true,
+    allowedHeaders: ['Access-Control-Allow-Origin', '*'],
   })
 );
 
