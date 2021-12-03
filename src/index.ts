@@ -34,7 +34,6 @@ app.use(
 app.use(express.json({ limit: '50MB' }));
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
     credentials: true,
   })
 );
