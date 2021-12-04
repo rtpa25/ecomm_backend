@@ -34,9 +34,8 @@ app.use(
 app.use(express.json({ limit: '50MB' }));
 app.use(
   cors({
-    origin: 'https://ecomm-app-theta.vercel.app',
+    origin: ['https://ecomm-app-theta.vercel.app', 'http://localhost:3000'],
     credentials: true,
-    // allowedHeaders: ['Access-Control-Allow-Origin', '*'],
   })
 );
 
